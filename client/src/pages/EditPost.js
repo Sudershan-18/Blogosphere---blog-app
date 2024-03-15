@@ -11,7 +11,11 @@ export default function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
+<<<<<<< HEAD
     fetch('https://blogosphere-blog-app-omb2.vercel.app/post/'+id)
+=======
+    fetch('https://blogosphere-blog-app.onrender.com/post/'+id)
+>>>>>>> 85136fdfcd3dc52559381e7a13bb598a7f79d78d
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -33,7 +37,11 @@ export default function EditPost() {
       data.set('file', files?.[0]);
     }
 
+<<<<<<< HEAD
     const response = await fetch('https://blogosphere-blog-app-omb2.vercel.app/post', {
+=======
+    const response = await fetch('https://blogosphere-blog-app.onrender.com/post', {
+>>>>>>> 85136fdfcd3dc52559381e7a13bb598a7f79d78d
       method: 'PUT',
       body: data,
       credentials:'include',

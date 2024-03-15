@@ -10,7 +10,11 @@ export default function PostPage() {
     const {id} = useParams();
 
     useEffect(() => {
+<<<<<<< HEAD
         fetch(`https://blogosphere-blog-app-omb2.vercel.app/post/${id}`)
+=======
+        fetch(`https://blogosphere-blog-app.onrender.com/post/${id}`)
+>>>>>>> 85136fdfcd3dc52559381e7a13bb598a7f79d78d
             .then(response =>{
                 response.json().then(postInfo => {
                     setPostInfo(postInfo);
@@ -40,7 +44,11 @@ export default function PostPage() {
             )}
             
             <div className="image">
+<<<<<<< HEAD
                 <img src={`https://blogosphere-blog-app-omb2.vercel.app/${postInfo.cover}`} alt="" />
+=======
+                <img src={`https://blogosphere-blog-app.onrender.com/${postInfo.cover}`} alt="" />
+>>>>>>> 85136fdfcd3dc52559381e7a13bb598a7f79d78d
             </div>
 
             <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}} />

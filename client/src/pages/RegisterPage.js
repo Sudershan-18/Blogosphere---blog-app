@@ -6,7 +6,11 @@ export default function RegisterPage() {
     
     const register = async (ev) => {
         ev.preventDefault();
+<<<<<<< HEAD
         const response = await fetch('https://blogosphere-blog-app-omb2.vercel.app/register', {
+=======
+        const response = await fetch('https://blogosphere-blog-app.onrender.com/register', {
+>>>>>>> 85136fdfcd3dc52559381e7a13bb598a7f79d78d
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'}
