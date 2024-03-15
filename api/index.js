@@ -31,8 +31,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 mongoose.connect(process.env.CONNECTION_STRING);
 
 app.post('/register', async (req, res) => {
-    const {username, password} = req.body;
     try{
+        const {username, password} = req.body;
         const userDoc = await User.create({
             username, 
             password: bcrypt.hashSync(password, salt),
@@ -44,6 +44,7 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
+    try{
     const {username, password} = req.body;
     const userDoc = await User.findOne({username});
     const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -62,23 +63,34 @@ app.post('/login', async (req, res) => {
     } else {
         res.status(400).json('wrong credentials');
     }
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.get('/profile', (req, res)=> {
+    try{
     const {token} = req.cookies;
     jwt.verify(token, secret, {}, (err, info) => {
         if(err) throw err;
         res.json(info);
     });
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.post('/logout', (req, res) => {
+    try{
     res.cookie('token', '').json('ok');
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
-    // try{
+    try{
     const {originalname, path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];    //we have to grab the extension of the file from its original name and rename it to webp so export and use libraray 'fs'
@@ -98,14 +110,14 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
         });
         res.json(postDoc);
     });
-    // } catch(e){
-    //     res.status(400).json(e.message);
-    // }
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
-    // try{
+    try{
     let newPath = null;
     if(req.file){
         const {originalname, path} = req.file;
@@ -135,24 +147,32 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
         
         res.json(postDoc);
     });
-    // } catch(e){
-    //     res.status(400).json(e.message);
-    // }
+    } catch(e){
+        res.status(400).json(e.message);
+    }
     
 });
 
 app.get('/post', async (req, res) =>{
+    try{
     res.json(await Post.find()
         .populate('author', ['username'])
         .sort({createdAt: -1})
         .limit(20)
     );
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.get('/post/:id', async (req, res) => {
+    try{
     const {id} = req.params;
     const postDoc = await Post.findById(id).populate('author', ['username']);
     res.json(postDoc);
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.listen(4000);
