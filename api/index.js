@@ -23,7 +23,7 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
+app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
