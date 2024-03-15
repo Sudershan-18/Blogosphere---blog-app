@@ -60,6 +60,10 @@ app.post('/login', async (req, res) => {
             res.cookie('token', token).json({
                 id:userDoc._id,
                 username,
+                httpOnly: true,
+                expires: new Date(Date.now() + 60 * 1000 * 60),
+                sameSite: 'none',
+                secure: true,
             });
             // res.json(token);
         });
@@ -85,7 +89,14 @@ app.get('/profile', (req, res)=> {
 
 app.post('/logout', (req, res) => {
     try{
-    res.cookie('token', '').json('ok');
+    res.cookie('token', '',{
+        id:null,
+        username:null,
+        httpOnly: true,
+        expires: new Date(Date.now()),
+        sameSite: 'none',
+        secure: true,
+    }).json('ok');
     } catch(e){
         res.status(400).json(e.message);
     }
