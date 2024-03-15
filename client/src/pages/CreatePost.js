@@ -19,7 +19,7 @@ export default function CreatePost() {
         data.set('file', files[0]);
 
         ev.preventDefault();
-        const response = await fetch('http://localhost:4000/post', {
+        const response = await fetch('https://blogosphere-blog-app.onrender.com/post', {
             method: 'POST',
             // in body we can send the info through json but since we have a file so we will send it through a form
             body: data,
