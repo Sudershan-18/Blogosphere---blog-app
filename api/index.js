@@ -15,15 +15,15 @@ const dotenv = require("dotenv").config();
 const salt = bcrypt.genSaltSync(10);
 const secret = "alsdkjfkla34ljkllk1q2kjljl";
 
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","https://blogosphere-blog-app.vercel.app");
-    res.header("Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-});
+// app.use((req,res,next)=>{
+//     res.setHeader("Access-Control-Allow-Origin","https://blogosphere-blog-app.vercel.app");
+//     res.header("Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+// });
 
-// app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
+app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -78,7 +78,7 @@ app.post('/logout', (req, res) => {
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
-    
+    try{
     const {originalname, path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];    //we have to grab the extension of the file from its original name and rename it to webp so export and use libraray 'fs'
@@ -98,11 +98,14 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
         });
         res.json(postDoc);
     });
+    } catch(e){
+        res.status(400).json(e.message);
+    }
 });
 
 app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
-    
+    try{
     let newPath = null;
     if(req.file){
         const {originalname, path} = req.file;
@@ -131,9 +134,11 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
         });
         
         res.json(postDoc);
-
     });
-
+    } catch(e){
+        res.status(400).json(e.message);
+    }
+    
 });
 
 app.get('/post', async (req, res) =>{
