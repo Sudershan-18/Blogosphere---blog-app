@@ -15,15 +15,15 @@ const dotenv = require("dotenv").config();
 const salt = bcrypt.genSaltSync(10);
 const secret = "alsdkjfkla34ljkllk1q2kjljl";
 
-// app.use((req,res,next)=>{
-//     res.setHeader("Access-Control-Allow-Origin","https://blogosphere-blog-app.vercel.app");
-//     res.header("Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//     );
-//     next();
-// });
+app.use((req,res,next)=>{
+    res.setHeader("Access-Control-Allow-Origin","https://blogosphere-blog-app.vercel.app");
+    res.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
 
-app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
+// app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
