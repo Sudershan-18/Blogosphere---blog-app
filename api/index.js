@@ -78,7 +78,7 @@ app.post('/logout', (req, res) => {
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
-    try{
+    // try{
     const {originalname, path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];    //we have to grab the extension of the file from its original name and rename it to webp so export and use libraray 'fs'
@@ -98,14 +98,14 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
         });
         res.json(postDoc);
     });
-    } catch(e){
-        res.status(400).json(e.message);
-    }
+    // } catch(e){
+    //     res.status(400).json(e.message);
+    // }
 });
 
 app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
-    try{
+    // try{
     let newPath = null;
     if(req.file){
         const {originalname, path} = req.file;
@@ -135,9 +135,9 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
         
         res.json(postDoc);
     });
-    } catch(e){
-        res.status(400).json(e.message);
-    }
+    // } catch(e){
+    //     res.status(400).json(e.message);
+    // }
     
 });
 
