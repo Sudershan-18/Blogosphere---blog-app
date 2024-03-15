@@ -69,6 +69,8 @@ app.post('/logout', (req, res) => {
 });
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
+    
     const {originalname, path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];    //we have to grab the extension of the file from its original name and rename it to webp so export and use libraray 'fs'
@@ -91,6 +93,8 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://blogosphere-blog-app.vercel.app');
+    
     let newPath = null;
     if(req.file){
         const {originalname, path} = req.file;
