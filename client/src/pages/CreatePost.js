@@ -19,11 +19,8 @@ export default function CreatePost() {
         data.set('file', files[0]);
 
         ev.preventDefault();
-<<<<<<< HEAD
-        const response = await fetch('https://blogosphere-blog-app-omb2.vercel.app/post', {
-=======
+        
         const response = await fetch('https://blogosphere-blog-app.onrender.com/post', {
->>>>>>> 85136fdfcd3dc52559381e7a13bb598a7f79d78d
             method: 'POST',
             // in body we can send the info through json but since we have a file so we will send it through a form
             body: data,
