@@ -24,6 +24,9 @@ const secret = "alsdkjfkla34ljkllk1q2kjljl";
 // });
 
 app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
+
+app.options('*', cors());
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
