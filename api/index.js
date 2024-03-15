@@ -122,6 +122,8 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
             cover:newPath,
             author: info.id,
         });
+
+        res.header("Access-Control-Allow-Origin", "https://blogosphere-blog-app.vercel.app");
         res.json(postDoc);
     });
     } catch(e){
@@ -158,7 +160,8 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
             content,
             cover: newPath ? newPath : postDoc.cover,
         });
-        
+
+        res.header("Access-Control-Allow-Origin", "https://blogosphere-blog-app.vercel.app");
         res.json(postDoc);
     });
     } catch(e){
