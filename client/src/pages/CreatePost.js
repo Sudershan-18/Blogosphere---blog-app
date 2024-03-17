@@ -20,7 +20,7 @@ export default function CreatePost() {
 
         ev.preventDefault();
         
-        const response = await fetch('https://blogosphere-blog-app.onrender.com/post', {
+        const response = await fetch('https://blogosphere-blog-app-nhs6.vercel.app/post', {
             method: 'POST',
             // in body we can send the info through json but since we have a file so we will send it through a form
             body: data,
