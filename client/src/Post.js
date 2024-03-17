@@ -9,7 +9,6 @@ export default function Post({_id, title, summary, cover, content, createdAt, au
                 <img src={'https://blogosphere-blog-app-nhs6.vercel.app/'+cover} alt="" />
                 </Link>
             </div>
-            
             <div className="texts">
                 <Link to={`/post/${_id}`}>
                     <h2>{title}</h2>
