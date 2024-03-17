@@ -6,8 +6,10 @@ import { Navigate } from "react-router-dom";
 export default function Header() {
   const {setUserInfo, userInfo} = useContext(UserContext);
 
+  // https://blogosphere-blog-app-nhs6.vercel.app
+  // https://blogosphere-blog-app.onrender.com
   useEffect(() => {
-    fetch('https://blogosphere-blog-app.onrender.com/profile', {  //use await before fetch or we may use .then()
+    fetch('https://blogosphere-blog-app-nhs6.vercel.app/profile', {  //use await before fetch or we may use .then()
       credentials:'include',
     }).then(response => {
       response.json().then(userInfo => {
@@ -17,7 +19,7 @@ export default function Header() {
   }, []);
 
   const logout = () => {
-    fetch('https://blogosphere-blog-app.onrender.com/logout', {
+    fetch('https://blogosphere-blog-app-nhs6.vercel.app/logout', {
       method: 'POST',
       credentials: "include",
     });
