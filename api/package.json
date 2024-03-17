@@ -8,5 +8,17 @@
     "mongoose": "^8.2.1",
     "multer": "^1.4.5-lts.1",
     "dotenv": "^16.4.5"
-  }
+  },
+    "name": "api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "engines": {
+      "node": ">=14.20.1"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": ""
 }
