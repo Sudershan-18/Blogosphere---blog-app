@@ -10,7 +10,7 @@ export default function Header() {
   // https://blogosphere-blog-app.onrender.com
   // https://blogosphere-blog-app-dnju.vercel.app    try-2
   useEffect(() => {
-    fetch('https://blogosphere-blog-app-dnju.vercel.app/profile', {  //use await before fetch or we may use .then()
+    fetch('https://blogosphere-blog-app.onrender.com/profile', {  //use await before fetch or we may use .then()
       credentials:'include',
     }).then(response => {
       response.json().then(userInfo => {
@@ -20,7 +20,7 @@ export default function Header() {
   }, []);
 
   const logout = () => {
-    fetch('https://blogosphere-blog-app-dnju.vercel.app/logout', {
+    fetch('https://blogosphere-blog-app.onrender.com/logout', {
       method: 'POST',
       credentials: "include",
     });
