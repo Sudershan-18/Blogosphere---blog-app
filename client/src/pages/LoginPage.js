@@ -10,7 +10,7 @@ export default function LoginPage() {
  
     const login = async (ev) => {
         ev.preventDefault();
-        const response = await fetch('https://blogosphere-blog-app-dnju.vercel.app/login', {
+        const response = await fetch('https://blogosphere-blog-app.onrender.com/login', {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'},
