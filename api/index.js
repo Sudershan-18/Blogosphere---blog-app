@@ -23,15 +23,15 @@ const secret = "alsdkjfkla34ljkllk1q2kjljl";
 //     next();
 // });
 
-// app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
+app.use(cors({credentials:true, origin: 'https://blogosphere-blog-app.vercel.app'}));
 
-//handling CORS policy
-const corsOptions = {
-    origin: 'https://blogosphere-blog-app.vercel.app',
-    methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
-    creadentials: true,
-};
-app.use(cors(corsOptions));
+// //handling CORS policy
+// const corsOptions = {
+//     origin: 'https://blogosphere-blog-app.vercel.app',
+//     methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
+//     creadentials: true,
+// };
+// app.use(cors(corsOptions));
 
 // app.options('*', cors());
 
